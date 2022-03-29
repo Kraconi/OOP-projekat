@@ -29,11 +29,29 @@ public class test {
 		//Postaviti za pocetnu tacku linije l1 tacku p,a krajnju tacku linije l1 tacku p1
 		L1.setStartPoint(p);
 		L1.setEndPoint(p1);
-		System.out.println("Line L1 start point" + L1.getStartPoint().getX()+","+L1.getEndPoint().getY());
+		System.out.println("Line L1 start point " + L1.getStartPoint().getX()+","+L1.getEndPoint().getY());
 				
 		//Postaviti y kordinatu krajnje tacke L1 na 23
 		
 		L1.getEndPoint().setY(23);
 		
+		Point p2=new Point(50,100);
+		Line L2=new Line(p2,new Point(400,500));
+		rectangle R2=new rectangle(p1,50,80);
+		
+		System.out.println(p2);
+		System.out.println(p1);
+		System.out.println(L2);
+		System.out.println(R2);
+		
+		System.out.println(p2.equals(p1));
+		System.out.println(p2.equals(L2));
+		
+		p1.setX(50);
+		p1.setY(100);
+		System.out.println(p2.equals(p1));
+		
+		System.out.println(p2 instanceof Point);
+		System.out.println(p2 instanceof Object);
 	}
 }

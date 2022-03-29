@@ -35,5 +35,35 @@ public class Point {
 	public void setSelected(boolean selected) {
 		this.selected=selected;
 	}
+	//konstruktor
 	
+	public Point() {}
+	public Point(int x,int y) 
+	{
+		this.x=x;
+		this.y=y;
+	}
+	public Point(int x,int y,boolean selected) 
+	{
+		this(x,y);
+		this.selected=selected;
+	}
+	
+	public String toString() 
+	{
+		return "(" + x + "," + y + ")"; 
+	}
+	
+	public boolean equals(Object obj) 
+	{
+		if (obj instanceof Point) 
+		{
+			Point pomocna = (Point) obj;
+			if(this.x==pomocna.getX() && this.y==pomocna.getY()) 
+			{
+				return true;
+			}else {return false;}
+		}else {return false;}
+		
+	}
 }

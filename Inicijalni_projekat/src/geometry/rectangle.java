@@ -50,4 +50,32 @@ public class rectangle {
 	{
 		this.selected=selected;
 	}
+	
+	public rectangle(){}
+	
+	public rectangle(Point upperLeft,int x,int y) 
+	{
+		this.upperLeft=upperLeft;
+		this.width=x;
+		this.height=y;
+	}
+	public rectangle(Point upperLeft,int x,int y,boolean selected) 
+	{
+		this(upperLeft,x,y);
+		this.selected=selected;
+	}
+	public String toString() 
+	{
+		return "Upper left point:"+ upperLeft + " ," + "width=" + width + ", " + "height=" + height; 
+	}
+	public boolean equals(Object obj) 
+	{
+		if(obj instanceof rectangle)
+		{
+			rectangle pomocni =(rectangle) obj;
+			if(this.upperLeft.equals(pomocni.upperLeft) && this.width==pomocni.width && this.height==pomocni.height ) 
+			{return true;
+			}else return false;
+		}else return false;
+	}
 }
