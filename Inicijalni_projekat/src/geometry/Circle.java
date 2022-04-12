@@ -32,12 +32,48 @@ public class Circle {
 		this.selected=selected;
 	}
 	
-	public double circumference(int rad) 
+	public Circle() {}
+	public Circle(Point center,int radius) 
 	{
-		return 2*rad*Math.PI;
+		this.center=center;
+		this.radius=radius;
 	}
-	public double area(int rad) 
+	public Circle(Point center,int radius,boolean selected) 
 	{
-		return rad*rad*Math.PI;
+		this(center,radius);
+		this.selected=selected;
+	}
+	public String toString() 
+	{
+		return "Center point=" + center + " Radius=" + radius; 
+	}
+	public boolean equals(Object obj) 
+	{
+		if(obj instanceof Circle) 
+		{
+			Circle pomocni = (Circle)obj;
+			if(pomocni.getCenter().equals(this.center)&& pomocni.getRadius()==this.radius)
+				return true;
+			return false;
+		}
+		return false;
+	}
+	
+	public boolean contains(int x,int y) 
+	{
+		return center.distance(x, y)<=radius;
+	}
+	public boolean contains(Point p) 
+	{
+		return center.distance(p.getX(),p.getY())<=radius;
+	}
+	
+	public double circumference() 
+	{
+		return 2*radius*Math.PI;
+	}
+	public double area() 
+	{
+		return radius*radius*Math.PI;
 	}
 }

@@ -17,7 +17,7 @@ public class rectangle {
 		return 2*width+2*height;
 	}
 	
-	//Metode pristuap
+	//Metode pristupa
 	public Point getUpperLeft() {return upperLeft;}
 	public void setUpperLeft(Point upperLeft) 
 	{
@@ -63,6 +63,14 @@ public class rectangle {
 	{
 		this(upperLeft,x,y);
 		this.selected=selected;
+	}
+	public boolean contains(int x,int y) 
+	{
+		return upperLeft.getX() < x && upperLeft.getX() + width > x && upperLeft.getY()< y && upperLeft.getY()+ height > y;
+	}
+	public boolean contains(Point p) 
+	{
+		return upperLeft.getX() < p.getX() && upperLeft.getX() + width > p.getX() && upperLeft.getY()< p.getY() && upperLeft.getY()+ height > p.getY();
 	}
 	public String toString() 
 	{

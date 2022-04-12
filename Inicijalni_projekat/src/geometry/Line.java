@@ -41,6 +41,10 @@ public class Line {
 		this(startPoint,endPoint);
 		this.selected=selected;
 	}
+	public boolean contains(int x,int y) 
+	{
+		return startPoint.distance(x, y)+endPoint.distance(x, y) - length()<=2;
+	}
 	public String toString() 
 	{
 		return startPoint + "-->" + endPoint;
