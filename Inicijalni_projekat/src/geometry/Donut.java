@@ -1,5 +1,7 @@
 package geometry;
 
+import java.awt.Graphics;
+
 public class Donut extends Circle {
 
 	private int innerRadius;
@@ -50,5 +52,10 @@ public class Donut extends Circle {
 				return true;
 			return false;
 		}return false;
+	}
+	public void draw(Graphics g) 
+	{
+		super.draw(g);///spoljasnji krug
+		g.drawOval(getCenter().getX()-innerRadius,getCenter().getY()-innerRadius,innerRadius*2,innerRadius*2);//unutrasnji krug
 	}
 }

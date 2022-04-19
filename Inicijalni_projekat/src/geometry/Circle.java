@@ -1,10 +1,11 @@
 package geometry;
 
-public class Circle {
+import java.awt.Graphics;
+
+public class Circle extends Shape {
 	
 	private Point center;
 	private int radius;
-	private boolean selected;
 
 
 	public Point getCenter()
@@ -25,12 +26,6 @@ public class Circle {
 		this.radius=x;
 	}
 	
-	public boolean isSelected() {
-		return selected;
-	}
-	public void setSelected(boolean selected) {
-		this.selected=selected;
-	}
 	
 	public Circle() {}
 	public Circle(Point center,int radius) 
@@ -41,7 +36,7 @@ public class Circle {
 	public Circle(Point center,int radius,boolean selected) 
 	{
 		this(center,radius);
-		this.selected=selected;
+		setSelected(selected);
 	}
 	public String toString() 
 	{
@@ -75,5 +70,10 @@ public class Circle {
 	public double area() 
 	{
 		return radius*radius*Math.PI;
+	}
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		g.drawOval(center.getX()-radius,center.getY()-radius, radius*2, radius*2);
 	}
 }

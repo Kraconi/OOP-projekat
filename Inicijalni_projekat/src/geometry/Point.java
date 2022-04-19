@@ -1,9 +1,11 @@
 package geometry;
 
-public class Point {
+import java.awt.Graphics;
+
+public class Point extends Shape {
+	
 	private int x;
 	private int y;
-	private boolean selected;
 	
 	public double distance(int x2,int y2) {
 		double dx=x-x2;
@@ -29,12 +31,6 @@ public class Point {
 		this.y=y;
 	}
 	
-	public boolean isSelected() {
-		return selected;
-	}
-	public void setSelected(boolean selected) {
-		this.selected=selected;
-	}
 	//konstruktor
 	
 	public Point() {}
@@ -46,7 +42,7 @@ public class Point {
 	public Point(int x,int y,boolean selected) 
 	{
 		this(x,y);
-		this.selected=selected;
+		setSelected(selected);
 	}
 	public boolean contains(int x,int y) 
 	{
@@ -69,5 +65,11 @@ public class Point {
 			}else {return false;}
 		}else {return false;}
 		
+	}
+
+	@Override
+	public void draw(Graphics g) {//tacku na crtezu predstavljmoa sa krstom,tj dve linije,jedna ver i jedna horizontalna
+		g.drawLine(x-2, y, x+2, y);//horizontalna linija
+		g.drawLine(x, y-2, x, y+2);//vertikalna linija
 	}
 }
