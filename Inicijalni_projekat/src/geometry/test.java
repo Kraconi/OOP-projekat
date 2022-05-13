@@ -22,7 +22,6 @@ public class test {
 		System.out.println("Distance between points is " + result);
 		
 		Line L1=new Line();
-		rectangle R1=new rectangle();
 		
 		//Inicajalizovati x kordiant tacke p na vr y kordinate tacke p1
 		p.setX(p1.getY());
