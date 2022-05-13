@@ -68,8 +68,31 @@ public class Point extends Shape {
 	}
 
 	@Override
-	public void draw(Graphics g) {//tacku na crtezu predstavljmoa sa krstom,tj dve linije,jedna ver i jedna horizontalna
+	public void draw(Graphics g) {//tacku na crtezu predstavljmoa sa krstom,tj dve linije,jedna vertikalna i jedna horizontalna
 		g.drawLine(x-2, y, x+2, y);//horizontalna linija
 		g.drawLine(x, y-2, x, y+2);//vertikalna linija
+	}
+
+	@Override
+	public void moveTo(int x, int y) {
+		// TODO Auto-generated method stub
+		this.x=x;
+		this.y=y;
+	}
+
+	@Override
+	public void moveBy(int byX, int byY) {
+		// TODO Auto-generated method stub
+		this.x=this.x + byX;
+		this.y += byY;
+	}
+
+	@Override
+	public int compareTo(Object obj) {
+		if (obj instanceof Point) 
+		{
+			return (int)(this.distance(0, 0)-((Point)obj).distance(0, 0));
+		}
+		return 0;
 	}
 }

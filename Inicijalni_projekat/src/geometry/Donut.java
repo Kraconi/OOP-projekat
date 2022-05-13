@@ -58,4 +58,11 @@ public class Donut extends Circle {
 		super.draw(g);///spoljasnji krug
 		g.drawOval(getCenter().getX()-innerRadius,getCenter().getY()-innerRadius,innerRadius*2,innerRadius*2);//unutrasnji krug
 	}
+	public int compareTo(Object obj) 
+	{
+		if(obj instanceof Donut) 
+		{
+			return (int)(this.area()-((Donut)obj).area());
+		}return 0;
+	}
 }

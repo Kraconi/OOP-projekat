@@ -8,7 +8,7 @@ public class rectangle extends Shape {
 	private int width;
 	private int height;
 	
-	public int area(int x,int y)
+	public int area()
 	{
 		return width *height;
 	}
@@ -84,5 +84,26 @@ public class rectangle extends Shape {
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 		g.drawRect(upperLeft.getX(),upperLeft.getY(), width, height);
+	}
+
+	@Override
+	public void moveTo(int x, int y) {
+		// TODO Auto-generated method stub
+		upperLeft.moveTo(x, y);
+	}
+
+	@Override
+	public void moveBy(int byX, int byY) {
+		// TODO Auto-generated method stub
+		upperLeft.moveBy(byX, byY);
+	}
+
+	@Override
+	public int compareTo(Object obj) {
+		if(obj instanceof rectangle) 
+		{
+			return (int)(this.area()-((rectangle)obj).area());
+		}
+		return 0;
 	}
 }
