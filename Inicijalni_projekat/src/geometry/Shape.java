@@ -2,7 +2,7 @@ package geometry;
 
 import java.awt.Graphics;
 
-public abstract class Shape implements Moveable,Comparable {
+public abstract class Shape implements Moveable, Comparable {
 	
 	private boolean selected;
 	
