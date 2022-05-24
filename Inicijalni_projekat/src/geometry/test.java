@@ -131,5 +131,15 @@ public class test {
 		{
 			System.out.println(circles[i]);
 		}
+		
+		System.out.println("Circle c1" + c1);
+		try {
+			c1.setRadius(-10);
+			}catch (Exception e) 
+		{
+				e.printStackTrace();
+				System.out.println("Radius je negativna vrednost");
+		}
+		System.out.println("Circle c1" + c1);
 	}
 }
