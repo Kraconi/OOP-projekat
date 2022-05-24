@@ -22,7 +22,6 @@ public class test {
 		System.out.println("Distance between points is " + result);
 		
 		Line L1=new Line();
-		rectangle R1=new rectangle();
 		
 		//Inicajalizovati x kordiant tacke p na vr y kordinate tacke p1
 		p.setX(p1.getY());
@@ -71,11 +70,11 @@ public class test {
 		L1.moveBy(1, 1);
 		System.out.println(L1);
 		
-		////System.out.println(c1);
-		////c1.moveBy(1,1);
-		////System.out.println(c1);
-		////c1.moveTo(1,1);
-		////System.out.println(c1);
+		System.out.println(c1);
+		c1.moveBy(1,1);
+		System.out.println(c1);
+		c1.moveTo(3,3);
+		System.out.println(c1);
 		
 		int[] numbers= {5,4,3,7,2,1};
 		System.out.println("\nNesortirani niz");
