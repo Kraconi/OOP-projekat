@@ -70,11 +70,11 @@ public class test {
 		L1.moveBy(1, 1);
 		System.out.println(L1);
 		
-		////System.out.println(c1);
-		////c1.moveBy(1,1);
-		////System.out.println(c1);
-		////c1.moveTo(1,1);
-		////System.out.println(c1);
+		System.out.println(c1);
+		c1.moveBy(1,1);
+		System.out.println(c1);
+		c1.moveTo(3,3);
+		System.out.println(c1);
 		
 		int[] numbers= {5,4,3,7,2,1};
 		System.out.println("\nNesortirani niz");
@@ -131,5 +131,15 @@ public class test {
 		{
 			System.out.println(circles[i]);
 		}
+		
+		System.out.println("Circle c1" + c1);
+		try {
+			c1.setRadius(-10);
+			}catch (Exception e) 
+		{
+				e.printStackTrace();
+				System.out.println("Radius je negativna vrednost");
+		}
+		System.out.println("Circle c1" + c1);
 	}
 }
