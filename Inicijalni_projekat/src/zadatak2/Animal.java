@@ -22,9 +22,9 @@ public abstract class Animal {
 		return this.breed;
 	}
 	
-	abstract void feed();
-	abstract void namePet(String name);
-	abstract void respond();
+	public abstract void feed();
+	public abstract void namePet(String name);
+	public abstract void respond();
 	
 	public Animal() {}
 	public Animal(String name,String breed) 

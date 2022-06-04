@@ -19,7 +19,7 @@ public class Dog extends Animal{
 		setHungry(hungry);
 	}
 	
-	void feed() {
+	public void feed() {
 		if(this.hungry=true) 
 		{
 			this.hungry=false;
@@ -27,11 +27,11 @@ public class Dog extends Animal{
 		}else System.out.println(this.getName() + "burries food for rainy days!");
 	}
 
-	void namePet(String name) {
+	public void namePet(String name) {
 		this.setName(name);
 	}
 
-	void respond() {
+	public void respond() {
 		System.out.println("woof woof");
 	}
 
