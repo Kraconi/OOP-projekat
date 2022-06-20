@@ -34,7 +34,7 @@ public class FrmTest extends JFrame {
 
 	private JPanel contentPane;
 	private final ButtonGroup btnGroup=new ButtonGroup();
-	private DefaultListModel<String> dlm=new DefaultListModel();
+	private DefaultListModel<String> dlm=new DefaultListModel<String>();
 	private JLabel lblCrvena;
 	private JLabel lblPlava;
 	private JLabel lblZuta;
@@ -84,6 +84,11 @@ public class FrmTest extends JFrame {
 				JOptionPane.showMessageDialog(null, "Antistres dugme","Poruka",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
+		GridBagConstraints gbc_btnIspis = new GridBagConstraints();
+		gbc_btnIspis.insets = new Insets(0, 0, 0, 5);
+		gbc_btnIspis.gridx = 1;
+		gbc_btnIspis.gridy = 1;
+		pnlsouth.add(btnIspis, gbc_btnIspis);
 		
 		JButton btnIzmeniBoju = new JButton("IzmeniBoju");
 		btnIzmeniBoju.addActionListener(new ActionListener() {
@@ -111,15 +116,10 @@ public class FrmTest extends JFrame {
 			}
 		});
 		GridBagConstraints gbc_btnIzmeniBoju = new GridBagConstraints();
-		gbc_btnIzmeniBoju.insets = new Insets(0, 0, 5, 0);
-		gbc_btnIzmeniBoju.gridx = 8;
-		gbc_btnIzmeniBoju.gridy = 0;
+		gbc_btnIzmeniBoju.insets = new Insets(0, 0, 0, 5);
+		gbc_btnIzmeniBoju.gridx = 2;
+		gbc_btnIzmeniBoju.gridy = 1;
 		pnlsouth.add(btnIzmeniBoju, gbc_btnIzmeniBoju);
-		GridBagConstraints gbc_btnIspis = new GridBagConstraints();
-		gbc_btnIspis.insets = new Insets(0, 0, 0, 5);
-		gbc_btnIspis.gridx = 6;
-		gbc_btnIspis.gridy = 1;
-		pnlsouth.add(btnIspis, gbc_btnIspis);
 		
 		JButton btnDodajBoju = new JButton("DodajBoju");
 		btnDodajBoju.addActionListener(new ActionListener() {
@@ -138,7 +138,8 @@ public class FrmTest extends JFrame {
 			}
 		});
 		GridBagConstraints gbc_btnDodajBoju = new GridBagConstraints();
-		gbc_btnDodajBoju.gridx = 8;
+		gbc_btnDodajBoju.insets = new Insets(0, 0, 0, 5);
+		gbc_btnDodajBoju.gridx = 3;
 		gbc_btnDodajBoju.gridy = 1;
 		pnlsouth.add(btnDodajBoju, gbc_btnDodajBoju);
 		
@@ -267,7 +268,6 @@ public class FrmTest extends JFrame {
 		
 		JLabel lblDodatneBoje = new JLabel("Dodatne boje");
 		GridBagConstraints gbc_lblDodatneBoje = new GridBagConstraints();
-		gbc_lblDodatneBoje.anchor = GridBagConstraints.EAST;
 		gbc_lblDodatneBoje.insets = new Insets(0, 0, 0, 5);
 		gbc_lblDodatneBoje.gridx = 0;
 		gbc_lblDodatneBoje.gridy = 4;
