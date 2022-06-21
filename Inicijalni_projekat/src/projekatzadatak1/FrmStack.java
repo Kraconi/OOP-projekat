@@ -141,5 +141,4 @@ public class FrmStack extends JFrame {
 		scrollPane.setViewportView(lstStack);
 		lstStack.setModel(dlm);
 	}
-
 }

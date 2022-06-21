@@ -2,6 +2,7 @@ package geometry;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Comparator;
 
 public class Circle extends Shape {
 	
@@ -30,8 +31,6 @@ public class Circle extends Shape {
 		}
 		this.radius=x;
 	}
-	
-	
 	public Circle() {}
 	public Circle(Point center,int radius) 
 	{
@@ -58,7 +57,6 @@ public class Circle extends Shape {
 		}
 		return false;
 	}
-	
 	public boolean contains(int x,int y) 
 	{
 		return center.distance(x, y)<=radius;
