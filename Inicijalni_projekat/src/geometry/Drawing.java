@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Drawing extends JPanel {
+	public Drawing() {
+	}
 	
 	public static void main(String[] args) {
 	JFrame frame=new JFrame("Drawing");
@@ -22,7 +24,7 @@ public class Drawing extends JPanel {
 		///p1.draw(g);
 		g.setColor(Color.RED);
 		Line l1=new Line(new Point(100,100),new Point(200,200));
-		///l1.draw(g);
+//		l1.draw(g);
 		g.setColor(Color.GREEN);
 		//l1.getStartPoint().draw(g);
 		Circle c1=new Circle(new Point(500,100),80);
