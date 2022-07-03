@@ -40,6 +40,7 @@ public class FrmDraw extends JFrame {
 	public static Point gen=new Point();
 	private JTextField txtTest;
 
+	
 	/**
 	 * Launch the application.
 	 */
