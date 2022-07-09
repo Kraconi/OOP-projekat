@@ -15,21 +15,125 @@ import geometry.rectangle;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.border.LineBorder;
 
 
 public class PnlDrawing extends JPanel {
 	
-	public ArrayList<Shape> shapes=FrmDraw.dlm;
-	static int j=FrmDraw.n;
+	private FrmDraw frame;
+	private ArrayList<Shape> shapes = new ArrayList<Shape>();
+	private Point startPoint=null;
+	private Shape selectedShape;
 	
 	public PnlDrawing() {
+		setBorder(new LineBorder(new Color(0, 0, 0), 4));
 	}
 	
-	public static void main(String[] args) 
+	public PnlDrawing(FrmDraw frame) 
 	{
-		PnlDrawing pnl=new PnlDrawing();
-		pnl.setSize(700, 400);
-		pnl.setVisible(true);
+		this.frame=frame;
+		setBackground(Color.WHITE);
+		addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent me) {
+				MouseClicked(me);
+			}
+		});
 	}
-}
+	
+	public void MouseClicked(MouseEvent n) 
+	{
+		Shape shape=null;
+		Point click=new Point(n.getX(),n.getY());
+		if(frame.getTglButtonSelect().isSelected()) 
+		{
+			selectedShape = null;
+			Iterator<Shape> iterator = shapes.iterator();
+			while(iterator.hasNext()) 
+			{
+				shape=iterator.next();
+				shape.setSelected(false);
+				if(shape.contains(click.getX(), click.getY()))
+						{
+							selectedShape=shape;
+							if(selectedShape != null) 
+							{
+								selectedShape.setSelected(true);
+							}
+						}
+			}
+		}else if(frame.getTglButtonPoint().isSelected()) 
+		{
+			
+		shape=new Point(n.getX(),n.getY(),false);
+		
+		}else if(frame.getTglButtonLine().isSelected()) 
+		{
+			
+			if(startPoint==null) 
+			{
+				startPoint=click;
+			}else	
+			{
+				Point end=new Point(click.getX(),click.getY(),false);
+				shape=new Line(startPoint,end,false);
+				startPoint=null;
+			}
+			
+		}else if(frame.getTglButtonRectangle().isSelected()) 
+			
+		{
+			DlgRectangle dlg=new DlgRectangle();
+			dlg.txtX.setText(n.getX() + "");
+			dlg.txtY.setText(n.getY() + "");
+			dlg.setModal(true);
+			dlg.setVisible(true);
+			if(dlg.isOK==true) 
+			{
+				
+			}
+		}else if(frame.getTglButtonCircle().isSelected())
+		
+		{
+			DlgCircle dlg=new DlgCircle();
+			dlg.txtX.setText(n.getX() + "");
+			dlg.txtY.setText(n.getY() + "");
+			dlg.setModal(true);
+			dlg.setVisible(true);
+			if(dlg.isOK==true) 
+			{
+				
+			}
+		}else if(frame.getTglButtonDonut().isSelected()) 
+		{
+			DlgDonut dlg=new DlgDonut();
+			dlg.txtX.setText(n.getX() + "");
+			dlg.txtY.setText(n.getY() + "");
+			dlg.setModal(true);
+			dlg.setVisible(true);
+			if(dlg.isOK==true) 
+			{
+				
+			}
+		}
+		
+		if(shape != null) 
+		{
+			shapes.add(shape);
+		}
+		repaint();
+		}
+	public void paint(Graphics g) 
+	{
+		super.paint(g);
+		Iterator<Shape>it=shapes.iterator();
+		while(it.hasNext()) 
+		{
+			it.next().draw(g);
+		}
+	}
+	}
+

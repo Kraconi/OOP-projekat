@@ -7,10 +7,15 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import geometry.Donut;
+import geometry.Point;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -18,11 +23,12 @@ import java.awt.event.ActionEvent;
 public class DlgDonut extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtX;
-	private JTextField txtY;
+	protected JTextField txtX;
+	protected JTextField txtY;
 	private JTextField txtRadius;
 	private JTextField txtInner;
 	protected boolean isOK;
+	public Donut donut;
 
 	/**
 	 * Launch the application.
@@ -178,8 +184,31 @@ public class DlgDonut extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						isOK=true;
-						setVisible(false);
+						try {
+						int x=Integer.parseInt(txtX.getText());
+						int y=Integer.parseInt(txtY.getText());
+						int radius=Integer.parseInt(txtRadius.getText());
+						int iradius=Integer.parseInt(txtInner.getText());
+						if((txtX.getText().trim().isEmpty())||(txtY.getText().trim().isEmpty())
+								||(txtRadius.getText().trim().isEmpty())||(txtInner.getText().trim().isEmpty())) 
+						{
+							JOptionPane.showMessageDialog(null, "All fields are required!", "ERROR",JOptionPane.ERROR_MESSAGE);
+						}else if((x<0)||(y<0)||(radius<=0)||(iradius<=0)) 
+						{
+							JOptionPane.showMessageDialog(null, "All values must be positive!", "ERROR",JOptionPane.ERROR_MESSAGE);
+						}else if(iradius>radius)
+						{
+							JOptionPane.showMessageDialog(null, "Inner radius must be smaller than outer radius!", "ERROR",JOptionPane.ERROR_MESSAGE);
+						}else
+						{
+							donut=new Donut(new Point(x,y),radius,iradius,false);
+							isOK=true;
+							setVisible(false);
+						}
+						}catch(Exception e1) 
+						{
+							JOptionPane.showMessageDialog(null, "All values must be numbers!", "ERROR",JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				});
 				okButton.setActionCommand("OK");

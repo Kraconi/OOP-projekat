@@ -3,6 +3,9 @@ package projekatzadatak3;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import geometry.Point;
+import geometry.rectangle;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -11,6 +14,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -18,11 +22,12 @@ import java.awt.event.ActionEvent;
 public class DlgRectangle extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtX;
-	private JTextField txtY;
+	protected JTextField txtX;
+	protected JTextField txtY;
 	private JTextField txtWidth;
 	private JTextField txtHeight;
 	protected boolean isOK;
+	public rectangle rectangle;
 
 	/**
 	 * Launch the application.
@@ -178,8 +183,28 @@ public class DlgRectangle extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						isOK=true;
-						setVisible(false);
+						try {
+						int x=Integer.parseInt(txtX.getText());
+						int y=Integer.parseInt(txtY.getText());
+						int width=Integer.parseInt(txtWidth.getText());
+						int height=Integer.parseInt(txtHeight.getText());
+						if((txtX.getText().trim().isEmpty())||(txtY.getText().trim().isEmpty())
+								||(txtWidth.getText().trim().isEmpty())||(txtHeight.getText().trim().isEmpty())) 
+						{
+							JOptionPane.showMessageDialog(null, "All fields are required!", "ERROR",JOptionPane.ERROR_MESSAGE);
+						}else if((x<0)||(y<0)||(width<=0)||(height<=0)) 
+						{
+							JOptionPane.showMessageDialog(null, "All values must be positive!", "ERROR",JOptionPane.ERROR_MESSAGE);
+						}else 
+						{
+							rectangle=new rectangle(new Point(x,y),width,height,false);
+							isOK=true;
+							setVisible(false);	
+						}
+						}catch(Exception e1) 
+						{
+							JOptionPane.showMessageDialog(null, "All values must be numbers!", "ERROR",JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				});
 				okButton.setActionCommand("OK");

@@ -7,10 +7,15 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import geometry.Circle;
+import geometry.Point;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -19,10 +24,11 @@ import java.awt.event.ActionEvent;
 public class DlgCircle extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtX;
-	private JTextField txtY;
+	protected JTextField txtX;
+	protected JTextField txtY;
 	private JTextField txtRadius;
 	protected boolean isOK;
+	public Circle circle;
 
 	/**
 	 * Launch the application.
@@ -159,8 +165,27 @@ public class DlgCircle extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						isOK=true;
-						setVisible(false);
+						try {
+						int x=Integer.parseInt(txtX.getText());
+						int y=Integer.parseInt(txtY.getText());
+						int radius=Integer.parseInt(txtRadius.getText());
+						if((txtX.getText().trim().isEmpty())||(txtY.getText().trim().isEmpty())
+								||(txtRadius.getText().trim().isEmpty())) 
+						{
+							JOptionPane.showMessageDialog(null, "All fields are required!", "ERROR",JOptionPane.ERROR_MESSAGE);
+						}else if((x<0)||(y<0)||(radius<0)) 
+						{
+							JOptionPane.showMessageDialog(null, "All values must be positive!", "ERROR",JOptionPane.ERROR_MESSAGE);
+						}else 
+						{
+							circle=new Circle(new Point(x,y),radius,false);
+							isOK=true;
+							setVisible(false);
+						}
+						}catch(Exception e1) 
+						{
+							JOptionPane.showMessageDialog(null, "All values must be numbers!", "ERROR",JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				});
 				okButton.setActionCommand("OK");

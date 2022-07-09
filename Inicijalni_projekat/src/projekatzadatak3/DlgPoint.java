@@ -7,10 +7,15 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import geometry.Point;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
@@ -21,6 +26,7 @@ public class DlgPoint extends JDialog {
 	protected boolean isOK;
 	protected JTextField txtX;
 	protected JTextField txtY;
+	public Point point;
 
 	/**
 	 * Launch the application.
@@ -93,9 +99,26 @@ public class DlgPoint extends JDialog {
 			{
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						isOK=true;
-						setVisible(false);
+					public void actionPerformed(ActionEvent e) 
+					{
+						try {
+						int x=Integer.parseInt(txtX.getText());
+						int y=Integer.parseInt(txtY.getText());
+						if((txtX.getText().trim().isEmpty()) ||(txtY.getText().trim().isEmpty()))
+						{
+							JOptionPane.showMessageDialog(null, "All fields are required!", "Error",JOptionPane.ERROR_MESSAGE);
+						}else if((x<0)|| (y<0)) {
+						JOptionPane.showMessageDialog(null, "All values must be positive!", "Error",JOptionPane.ERROR_MESSAGE);
+						}else 
+						{
+							point=new Point(x,y,false);
+							isOK=true;
+							setVisible(false);
+						}
+							}catch(Exception e1) 
+						{
+								JOptionPane.showMessageDialog(null, "All valuse must be numbers!", "Error",JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				});
 				okButton.setActionCommand("OK");
