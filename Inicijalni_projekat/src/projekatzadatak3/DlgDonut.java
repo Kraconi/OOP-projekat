@@ -52,6 +52,7 @@ public class DlgDonut extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgDonut() {
+		setTitle("Add new or modify existing donut");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -208,13 +209,9 @@ public class DlgDonut extends JDialog {
 						int y=Integer.parseInt(txtY.getText());
 						int radius=Integer.parseInt(txtRadius.getText());
 						int iradius=Integer.parseInt(txtInner.getText());
-						if((txtX.getText().trim().isEmpty())||(txtY.getText().trim().isEmpty())
-								||(txtRadius.getText().trim().isEmpty())||(txtInner.getText().trim().isEmpty())) 
+						if((radius<=0)||(iradius<=0)) 
 						{
-							JOptionPane.showMessageDialog(null, "All fields are required!", "Error",JOptionPane.ERROR_MESSAGE);
-						}else if((x<0)||(y<0)||(radius<=0)||(iradius<=0)) 
-						{
-							JOptionPane.showMessageDialog(null, "All values must be positive!", "Error",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Radius must be a positive number!", "Error",JOptionPane.ERROR_MESSAGE);
 						}else if(iradius>radius)
 						{
 							JOptionPane.showMessageDialog(null, "Inner radius must be smaller than outer radius!", "Error",JOptionPane.ERROR_MESSAGE);
@@ -227,7 +224,7 @@ public class DlgDonut extends JDialog {
 						}
 						}catch(Exception e1) 
 						{
-							JOptionPane.showMessageDialog(null, "All values must be numbers!", "Error",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "All fields are required and must be numbers!", "Error",JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});

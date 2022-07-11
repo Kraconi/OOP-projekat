@@ -52,6 +52,7 @@ public class DlgCircle extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgCircle() {
+		setTitle("Add new or modify existing circle");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -184,16 +185,13 @@ public class DlgCircle extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						try {
 						int x=Integer.parseInt(txtX.getText());
 						int y=Integer.parseInt(txtY.getText());
-						int radius=Integer.parseInt(txtRadius.getText());
-						if((txtX.getText().trim().isEmpty())||(txtY.getText().trim().isEmpty())
-								||(txtRadius.getText().trim().isEmpty())) 
+						int radius=Integer.parseInt(txtRadius.getText()); 
+						if((x<0)||(y<0)||(radius<0)) 
 						{
-							JOptionPane.showMessageDialog(null, "All fields are required!", "Error",JOptionPane.ERROR_MESSAGE);
-						}else if((x<0)||(y<0)||(radius<0)) 
-						{
-							JOptionPane.showMessageDialog(null, "All values must be positive!", "Error",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "All values must be positive numbers!", "Error",JOptionPane.ERROR_MESSAGE);
 						}else 
 						{
 							circle=new Circle(new Point(x,y),radius,false,
@@ -201,7 +199,10 @@ public class DlgCircle extends JDialog {
 							isOK=true;
 							setVisible(false);
 						}
-						
+						}catch(Exception e1) 
+						{
+							JOptionPane.showMessageDialog(null, "All fields are required and must be numbers!", "Error",JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				});
 				okButton.setActionCommand("OK");

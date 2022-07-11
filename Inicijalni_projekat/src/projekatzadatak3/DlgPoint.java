@@ -45,6 +45,7 @@ public class DlgPoint extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgPoint() {
+		setTitle("Add new or modify existing point");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -101,24 +102,11 @@ public class DlgPoint extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) 
 					{
-						try {
 						int x=Integer.parseInt(txtX.getText());
 						int y=Integer.parseInt(txtY.getText());
-						if((txtX.getText().trim().isEmpty()) ||(txtY.getText().trim().isEmpty()))
-						{
-							JOptionPane.showMessageDialog(null, "All fields are required!", "Error",JOptionPane.ERROR_MESSAGE);
-						}else if((x<0)|| (y<0)) {
-						JOptionPane.showMessageDialog(null, "All values must be positive!", "Error",JOptionPane.ERROR_MESSAGE);
-						}else 
-						{
-							point=new Point(x,y,false);
-							isOK=true;
-							setVisible(false);
-						}
-							}catch(Exception e1) 
-						{
-								JOptionPane.showMessageDialog(null, "All valuse must be numbers!", "Error",JOptionPane.ERROR_MESSAGE);
-						}
+						point=new Point(x,y,false);
+						isOK=true;
+						setVisible(false);
 					}
 				});
 				okButton.setActionCommand("OK");

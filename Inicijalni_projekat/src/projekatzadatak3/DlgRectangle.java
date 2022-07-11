@@ -50,6 +50,7 @@ public class DlgRectangle extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgRectangle() {
+		setTitle("Add new or modify existing rectangle");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -206,13 +207,9 @@ public class DlgRectangle extends JDialog {
 						int y=Integer.parseInt(txtY.getText());
 						int width=Integer.parseInt(txtWidth.getText());
 						int height=Integer.parseInt(txtHeight.getText());
-						if((txtX.getText().trim().isEmpty())||(txtY.getText().trim().isEmpty())
-								||(txtWidth.getText().trim().isEmpty())||(txtHeight.getText().trim().isEmpty())) 
+						if((width<=0)||(height<=0)) 
 						{
-							JOptionPane.showMessageDialog(null, "All fields are required!", "Error",JOptionPane.ERROR_MESSAGE);
-						}else if((x<0)||(y<0)||(width<=0)||(height<=0)) 
-						{
-							JOptionPane.showMessageDialog(null, "All values must be positive!", "Error",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Width and height must be positive numbers!", "Error",JOptionPane.ERROR_MESSAGE);
 						}else 
 						{
 							rectangle=new rectangle(new Point(x,y),width,height,false,

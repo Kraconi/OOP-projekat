@@ -86,10 +86,12 @@ public class FrmStack extends JFrame {
 				}
 				}catch(java.lang.NumberFormatException e)
 				{
-					JOptionPane.showMessageDialog(null, "All valuse must be eneter and must be numbers!");
+					JOptionPane.showMessageDialog(null, "All valuse must be eneter and must be numbers!","Error",
+							JOptionPane.ERROR_MESSAGE);
 				}catch(java.lang.IllegalArgumentException e)
 				{
-					JOptionPane.showMessageDialog(null, "Radius cant be negative!");
+					JOptionPane.showMessageDialog(null, "Radius cant be negative!","Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

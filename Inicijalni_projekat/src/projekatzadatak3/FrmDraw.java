@@ -35,6 +35,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.border.LineBorder;
 import projekatzadatak3.PnlDrawing;
 import javax.swing.JTextField;
+import java.awt.Font;
 
 public class FrmDraw extends JFrame {
 
@@ -72,9 +73,10 @@ public class FrmDraw extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmDraw() {
+		setFont(new Font("Dialog", Font.BOLD, 12));
 		setTitle("StefanVidicIT70/2021");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -88,7 +90,7 @@ public class FrmDraw extends JFrame {
 		gbl_North.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_North.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		North.setLayout(gbl_North);
-		North.setBackground(Color.BLUE);
+		North.setBackground(new Color(0, 206, 209));
 		
 		buttonGroupTop.add(tglbPoint);
 		buttonGroupTop.add(tglbLine);
@@ -102,12 +104,12 @@ public class FrmDraw extends JFrame {
 		North.add(tglbCircle);
 		North.add(tglbDonut);
 		
-		pnlDrawing.setBackground(Color.WHITE);
+		pnlDrawing.setBackground(new Color(248, 248, 255));
 		contentPane.add(pnlDrawing, BorderLayout.CENTER);
 		
 		JPanel South = new JPanel();
 		contentPane.add(South, BorderLayout.SOUTH);
-		South.setBackground(Color.BLUE);
+		South.setBackground(new Color(0, 206, 209));
 		
 		JButton btnModify = new JButton("Modify");
 		btnModify.addActionListener(new ActionListener() {
@@ -115,6 +117,7 @@ public class FrmDraw extends JFrame {
 				if(pnlDrawing.getSelectedShape()!=null) 
 				{
 					modify();
+					pnlDrawing.getSelectedShape().setSelected(false);
 				}else 
 				{
 					JOptionPane.showMessageDialog(null, "Select what you want to modify!", "Error",JOptionPane.ERROR_MESSAGE);

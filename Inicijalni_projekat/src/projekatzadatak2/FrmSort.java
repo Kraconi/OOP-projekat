@@ -31,8 +31,7 @@ public class FrmSort extends JFrame {
 
 	private JPanel contentPane;
 	private DefaultListModel<Circle> dlm=new DefaultListModel<Circle>();
-	private Circle[] List;
-	private JList lstSort;
+	private ArrayList<Circle> list=new ArrayList<Circle>();
 
 	/**
 	 * Launch the application.
@@ -86,13 +85,15 @@ public class FrmSort extends JFrame {
 					Point p=new Point(x,y);
 					Circle C=new Circle(p,r);
 					dlm.addElement(C);
+					list.add(C);
 				}
 				}catch(java.lang.NumberFormatException e1)
 				{
-					JOptionPane.showMessageDialog(null, "All valuse must be eneter and must be numbers!");
+					JOptionPane.showMessageDialog(null, "All valuse must be eneter and must be numbers!","Error",
+							JOptionPane.ERROR_MESSAGE);
 				}catch(java.lang.IllegalArgumentException e1)
 				{
-					JOptionPane.showMessageDialog(null, "Radius cant be negative!");
+					JOptionPane.showMessageDialog(null, "Radius cant be negative!", "Error",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -105,17 +106,18 @@ public class FrmSort extends JFrame {
 		JButton btnSort = new JButton("Sort");
 		btnSort.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<Circle> list=new ArrayList<Circle>();
-				for(int i=0;i<dlm.size();i++) 
+				if(list.isEmpty()) 
 				{
-					list.add((Circle)dlm.get(i));
+					JOptionPane.showMessageDialog(null, "List is empty!");
+				}else {
+				list.sort(null);
+				list.sort(Collections.reverseOrder());
+				dlm.clear();
+				for(int i=0;i<list.size();i++) {
+					dlm.addElement(list.get(i));
 				}
-				Collections.sort(list,new Sort());
-				dlm.removeAllElements();
-				for(Circle s : list) 
-				{
-					dlm.addElement(s);
-				}
+				
+			}
 			}
 		});
 		GridBagConstraints gbc_btnSort = new GridBagConstraints();

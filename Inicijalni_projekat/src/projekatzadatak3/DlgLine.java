@@ -49,6 +49,7 @@ public class DlgLine extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgLine() {
+		setTitle("Add new or modify existing line");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -192,28 +193,13 @@ public class DlgLine extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						try {
 						int x1=Integer.parseInt(txtXStart.getText());
 						int x2=Integer.parseInt(txtXEnd.getText());
 						int y1=Integer.parseInt(txtYStart.getText());
 						int y2=Integer.parseInt(txtYEnd.getText());
-						if(((txtXStart.getText().trim().isEmpty()))||((txtYStart.getText().trim().isEmpty()))||
-								((txtXEnd.getText().trim().isEmpty()))||((txtYEnd.getText().trim().isEmpty()))) 
-						{
-							JOptionPane.showMessageDialog(null, "All fields are required!", "Error",JOptionPane.ERROR_MESSAGE);
-						}else if((x1<0)||(x2<0)||(y1<0)||(y2<0)) 
-						{
-							JOptionPane.showMessageDialog(null, "All values must be positive!", "Error",JOptionPane.ERROR_MESSAGE);
-						}else 
-						{
-							line=new Line((new Point(x1,y1)),(new Point(x2,y2)),false);
-							isOK=true;
-							setVisible(false);
-						}
-						}catch(Exception e1) 
-						{
-							JOptionPane.showMessageDialog(null, "All values must be numbers!", "Error",JOptionPane.ERROR_MESSAGE);
-						}
+						line=new Line((new Point(x1,y1)),(new Point(x2,y2)),false);
+						isOK=true;
+						setVisible(false);
 					}
 				});
 				okButton.setActionCommand("OK");
