@@ -27,10 +27,9 @@ public class PnlDrawing extends JPanel {
 	private FrmDraw frame;
 	private ArrayList<Shape> shapes = new ArrayList<Shape>();
 	private Point startPoint=null;
-	private Shape selectedShape;
+	protected Shape selectedShape;
 	
 	public PnlDrawing() {
-		setBorder(new LineBorder(new Color(0, 0, 0), 4));
 	}
 	
 	public PnlDrawing(FrmDraw frame) 
@@ -59,17 +58,15 @@ public class PnlDrawing extends JPanel {
 				if(shape.contains(click.getX(), click.getY()))
 						{
 							selectedShape=shape;
-							if(selectedShape != null) 
-							{
-								selectedShape.setSelected(true);
-							}
 						}
+			}
+			if(selectedShape != null) 
+			{
+				selectedShape.setSelected(true);
 			}
 		}else if(frame.getTglButtonPoint().isSelected()) 
 		{
-			
-		shape=new Point(n.getX(),n.getY(),false);
-		
+		shape=new Point(click.getX(),click.getY(),false);
 		}else if(frame.getTglButtonLine().isSelected()) 
 		{
 			
@@ -93,7 +90,7 @@ public class PnlDrawing extends JPanel {
 			dlg.setVisible(true);
 			if(dlg.isOK==true) 
 			{
-				
+				shape=dlg.getRectangle();
 			}
 		}else if(frame.getTglButtonCircle().isSelected())
 		
@@ -105,7 +102,7 @@ public class PnlDrawing extends JPanel {
 			dlg.setVisible(true);
 			if(dlg.isOK==true) 
 			{
-				
+				shape=dlg.getCircle();
 			}
 		}else if(frame.getTglButtonDonut().isSelected()) 
 		{
@@ -116,7 +113,7 @@ public class PnlDrawing extends JPanel {
 			dlg.setVisible(true);
 			if(dlg.isOK==true) 
 			{
-				
+				shape=dlg.getDonut();
 			}
 		}
 		
@@ -134,6 +131,20 @@ public class PnlDrawing extends JPanel {
 		{
 			it.next().draw(g);
 		}
+	}
+	public Shape getSelectedShape() {
+		return selectedShape;
+	}
+
+	public void setSelectedShape(Shape selectedShape) {
+		this.selectedShape = selectedShape;
+	}
+	public ArrayList<Shape> getShapes() {
+		return shapes;
+	}
+
+	public void setShapes(ArrayList<Shape> shapes) {
+		this.shapes = shapes;
 	}
 	}
 

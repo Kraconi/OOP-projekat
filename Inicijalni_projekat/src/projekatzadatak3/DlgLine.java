@@ -25,11 +25,11 @@ import java.awt.event.ActionEvent;
 public class DlgLine extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtXStart;
-	private JTextField txtYStart;
-	private JTextField txtXEnd;
-	private JTextField txtYEnd;
-	private boolean isOK;
+	protected JTextField txtXStart;
+	protected JTextField txtYStart;
+	protected JTextField txtXEnd;
+	protected JTextField txtYEnd;
+	protected boolean isOK;
 	public Line line;
 
 	/**
@@ -206,7 +206,6 @@ public class DlgLine extends JDialog {
 							JOptionPane.showMessageDialog(null, "All values must be positive!", "Error",JOptionPane.ERROR_MESSAGE);
 						}else 
 						{
-							
 							line=new Line((new Point(x1,y1)),(new Point(x2,y2)),false);
 							isOK=true;
 							setVisible(false);
@@ -233,5 +232,10 @@ public class DlgLine extends JDialog {
 			}
 		}
 	}
-
+	public Line getLine() {
+		return line;
+	}
+	public void setLine(Line line) {
+		this.line = line;
+	}
 }

@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Comparator;
 
-public class Circle extends Shape {
+public class Circle extends SurfaceShape {
 	
 	private Point center;
 	private int radius;
@@ -42,6 +42,15 @@ public class Circle extends Shape {
 		this(center,radius);
 		setSelected(selected);
 	}
+	public Circle(Point center, int radius, boolean selected, Color color) {
+		this(center, radius, selected);
+		setColor(color);
+	}
+	
+	public Circle(Point center, int radius, boolean selected, Color color, Color innerColor) {
+		this(center, radius, selected, color);
+		setInnerColor(innerColor);
+	}
 	public String toString() 
 	{
 		return " Center point=" + center + " Radius=" + radius; 
@@ -74,11 +83,17 @@ public class Circle extends Shape {
 	{
 		return radius*radius*Math.PI;
 	}
+	
+	public void fill(Graphics g) 
+	{
+		g.setColor(getInnerColor());
+		g.fillOval(center.getX()-radius,center.getY()-radius, radius*2, radius*2);
+	}
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		g.setColor(Color.BLACK);
+		g.setColor(getColor());
 		g.drawOval(center.getX()-radius,center.getY()-radius, radius*2, radius*2);
+		this.fill(g);
 		if(isSelected()) 
 		{
 			g.setColor(Color.BLUE);

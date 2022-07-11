@@ -1,6 +1,8 @@
 package geometry;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class test {
 
@@ -134,12 +136,25 @@ public class test {
 		
 		System.out.println("Circle c1" + c1);
 		try {
-			c1.setRadius(-10);
+			c1.setRadius(10);
 			}catch (Exception e) 
 		{
 				e.printStackTrace();
 				System.out.println("Radius je negativna vrednost");
 		}
 		System.out.println("Circle c1" + c1);
+		
+		ArrayList<Shape> shapes = new ArrayList<Shape>();
+		shapes.add(c30);
+		shapes.add(c20);
+		shapes.add(p30);
+		shapes.remove(c20);
+		System.out.println("#########");
+		
+		Iterator<Shape> itr = shapes.iterator();
+		while(itr.hasNext()) 
+		{
+			System.out.println(itr.next());
+		}
 	}
 }

@@ -20,6 +20,11 @@ public class Donut extends Circle {
 		this(center,radius,innerRadius);
 		setSelected(selected);
 	}
+	public Donut(Point center, int radius, int innerRadius, boolean selected, Color color, Color innerColor) { 
+		this(center, radius, innerRadius, selected);
+		setColor(color);
+		setInnerColor(innerColor);
+	}
 	public void setInnerRadius(int innerRadius) 
 	{
 		this.innerRadius=innerRadius;
@@ -54,10 +59,17 @@ public class Donut extends Circle {
 			return false;
 		}return false;
 	}
+	
+	public void fill(Graphics g) 
+	{
+		g.setColor(getInnerColor());
+		super.fill(g);
+		g.setColor(Color.WHITE);
+		g.fillOval(getCenter().getX() - this.innerRadius +1, getCenter().getY() - this.innerRadius+1, this.innerRadius * 2-2, this.innerRadius * 2-2);
+	}
 	public void draw(Graphics g) 
 	{
 		super.draw(g);///spoljasnji krug
-		g.setColor(Color.BLACK);
 		g.drawOval(getCenter().getX()-innerRadius,getCenter().getY()-innerRadius,innerRadius*2,innerRadius*2);//unutrasnji krug
 		if(isSelected()) 
 		{

@@ -3,13 +3,13 @@ package geometry;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class rectangle extends Shape {
+public class rectangle extends SurfaceShape {
 	
 	private Point upperLeft;
 	private int width;
 	private int height;
 	
-	public int area()
+	public double area()
 	{
 		return width *height;
 	}
@@ -58,6 +58,11 @@ public class rectangle extends Shape {
 		this(upperLeft,x,y);
 		setSelected(selected);
 	}
+	public rectangle(Point upperLeftPoint, int width, int height, boolean selected, Color color, Color innerColor) {
+		this(upperLeftPoint,width,height,selected);
+		setColor(color);
+		setInnerColor(innerColor);
+	}
 	public boolean contains(int x,int y) 
 	{
 		return upperLeft.getX() < x && upperLeft.getX() + width > x && upperLeft.getY()< y && upperLeft.getY()+ height > y;
@@ -81,11 +86,16 @@ public class rectangle extends Shape {
 		}else return false;
 	}
 
-	@Override
+	public void fill(Graphics g) 
+	{
+		g.setColor(getInnerColor());
+		g.fillRect(this.upperLeft.getX()+1, this.getUpperLeft().getY()+1, width-1, height-1);
+	}
+	
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		g.setColor(Color.BLACK);
+		g.setColor(getColor());
 		g.drawRect(upperLeft.getX(),upperLeft.getY(), width, height);
+		this.fill(g);
 		if(isSelected()) 
 		{
 			g.setColor(Color.BLUE);

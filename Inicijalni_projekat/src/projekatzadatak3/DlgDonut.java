@@ -1,13 +1,16 @@
 package projekatzadatak3;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import geometry.Circle;
 import geometry.Donut;
 import geometry.Point;
 
@@ -25,10 +28,12 @@ public class DlgDonut extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	protected JTextField txtX;
 	protected JTextField txtY;
-	private JTextField txtRadius;
-	private JTextField txtInner;
+	protected JTextField txtRadius;
+	protected JTextField txtInner;
 	protected boolean isOK;
 	public Donut donut;
+	protected JButton btnInnerColor;
+	protected JButton btnOutlineColor;
 
 	/**
 	 * Launch the application.
@@ -161,7 +166,14 @@ public class DlgDonut extends JDialog {
 			gbl_panel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 			panel.setLayout(gbl_panel);
 			{
-				JButton btnInnerColor = new JButton("Inner color");
+				btnInnerColor = new JButton("Inner color");
+				btnInnerColor.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Color innerColor = JColorChooser.showDialog(null, "Choose inner color",Color.BLUE);
+						if(innerColor !=null)
+						btnInnerColor.setBackground(innerColor);
+					}
+				});
 				GridBagConstraints gbc_btnInnerColor = new GridBagConstraints();
 				gbc_btnInnerColor.insets = new Insets(0, 0, 0, 5);
 				gbc_btnInnerColor.gridx = 0;
@@ -169,7 +181,14 @@ public class DlgDonut extends JDialog {
 				panel.add(btnInnerColor, gbc_btnInnerColor);
 			}
 			{
-				JButton btnOutlineColor = new JButton("Outline color");
+				btnOutlineColor = new JButton("Outline color");
+				btnOutlineColor.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Color outlineColor = JColorChooser.showDialog(null, "Choose outline color",Color.BLUE);
+						if(outlineColor !=null)
+						btnOutlineColor.setBackground(outlineColor);
+					}
+				});
 				GridBagConstraints gbc_btnOutlineColor = new GridBagConstraints();
 				gbc_btnOutlineColor.gridx = 1;
 				gbc_btnOutlineColor.gridy = 0;
@@ -192,22 +211,23 @@ public class DlgDonut extends JDialog {
 						if((txtX.getText().trim().isEmpty())||(txtY.getText().trim().isEmpty())
 								||(txtRadius.getText().trim().isEmpty())||(txtInner.getText().trim().isEmpty())) 
 						{
-							JOptionPane.showMessageDialog(null, "All fields are required!", "ERROR",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "All fields are required!", "Error",JOptionPane.ERROR_MESSAGE);
 						}else if((x<0)||(y<0)||(radius<=0)||(iradius<=0)) 
 						{
-							JOptionPane.showMessageDialog(null, "All values must be positive!", "ERROR",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "All values must be positive!", "Error",JOptionPane.ERROR_MESSAGE);
 						}else if(iradius>radius)
 						{
-							JOptionPane.showMessageDialog(null, "Inner radius must be smaller than outer radius!", "ERROR",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Inner radius must be smaller than outer radius!", "Error",JOptionPane.ERROR_MESSAGE);
 						}else
 						{
-							donut=new Donut(new Point(x,y),radius,iradius,false);
+							donut=new Donut(new Point(x,y),radius,iradius,false,
+									btnOutlineColor.getBackground(),btnInnerColor.getBackground());
 							isOK=true;
 							setVisible(false);
 						}
 						}catch(Exception e1) 
 						{
-							JOptionPane.showMessageDialog(null, "All values must be numbers!", "ERROR",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "All values must be numbers!", "Error",JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});
@@ -226,6 +246,13 @@ public class DlgDonut extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	public Donut getDonut() {
+		return donut;
+	}
+
+	public void setDonut(Donut n) {
+		this.donut = n;
 	}
 
 }

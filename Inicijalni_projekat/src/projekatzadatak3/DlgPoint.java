@@ -137,5 +137,11 @@ public class DlgPoint extends JDialog {
 			}
 		}
 	}
+	public Point getPoint() {
+		return point;
+	}
 
+	public void setPoint(Point point) {
+		this.point = point;
+	}
 }
