@@ -146,8 +146,6 @@ public class FrmDraw extends JFrame {
 		buttonGroupBottom.add(btnDelete);
 		buttonGroupBottom.add(btnModify);
 		
-		pnlDrawing.repaint();
-		
 	}
 	protected void modify() 
 	{
@@ -162,7 +160,6 @@ public class FrmDraw extends JFrame {
 			dlg.setVisible(true);
 			if(dlg.isOK==true) 
 			{
-			
 			pnlDrawing.getShapes().remove(shape);
 			pnlDrawing.getShapes().add(dlg.getPoint());
 			repaint();
@@ -240,7 +237,7 @@ public class FrmDraw extends JFrame {
 	}
 	protected void delete() 
 	{
-		Shape shape=pnlDrawing.getSelectedShape();
+			Shape shape=pnlDrawing.getSelectedShape();
 			int opinion=JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this object?","Confirm delete",
 					JOptionPane.YES_NO_OPTION);
 			if(opinion==JOptionPane.YES_OPTION) 

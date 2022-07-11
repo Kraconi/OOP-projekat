@@ -27,7 +27,7 @@ public class PnlDrawing extends JPanel {
 	private FrmDraw frame;
 	private ArrayList<Shape> shapes = new ArrayList<Shape>();
 	private Point startPoint=null;
-	protected Shape selectedShape;
+	private Shape selectedShape;
 	
 	public PnlDrawing() {
 	}
@@ -53,11 +53,11 @@ public class PnlDrawing extends JPanel {
 			Iterator<Shape> iterator = shapes.iterator();
 			while(iterator.hasNext()) 
 			{
-				shape=iterator.next();
-				shape.setSelected(false);
-				if(shape.contains(click.getX(), click.getY()))
+				Shape newShape=iterator.next();
+				newShape.setSelected(false);
+				if(newShape.contains(click.getX(), click.getY()))
 						{
-							selectedShape=shape;
+							selectedShape=newShape;
 						}
 			}
 			if(selectedShape != null) 

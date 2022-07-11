@@ -145,16 +145,15 @@ public class test {
 		System.out.println("Circle c1" + c1);
 		
 		ArrayList<Shape> shapes = new ArrayList<Shape>();
-		shapes.add(c30);
-		shapes.add(c20);
-		shapes.add(p30);
-		shapes.remove(c20);
+		Shape shp=L2;
+		shapes.add(shp);
+		shapes.remove(shp);
 		System.out.println("#########");
-		
 		Iterator<Shape> itr = shapes.iterator();
 		while(itr.hasNext()) 
 		{
 			System.out.println(itr.next());
 		}
+		System.out.println("#########");
 	}
 }
